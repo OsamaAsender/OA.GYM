@@ -15,4 +15,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OA.GYM.Entities\OA.GYM.Entities.csproj" />
+    <ProjectReference Include="..\OA.GYM.Utils\OA.GYM.Utils.csproj" />
+  </ItemGroup>
+
 </Project>
