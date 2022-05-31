@@ -9,10 +9,17 @@ namespace OA.GYM.Entities
 {
     public class Trainee
     {
+        public Trainee()
+        {
+            TrainingClasses = new List<TrainingClass>();
+        }
+
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Gender Gender { get; set; }
+
+        public List<TrainingClass> TrainingClasses { get; set; }
 
     }
 }
