@@ -14,5 +14,100 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    color: #344D70;
+}
+a{
+    color:black;
+}
+    a:hover {
+        color: #ED563B;
+    }
+
+.logoSize {
+    height: 3rem;
+    width: 4.5rem;
+}
+
+.navbarBG {
+    background-color: #F2F2F2;
+}
+
+.BG-IMG {
+    background-image: url("/imgs/CrossFitBackgroundimage.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position:top;
+
+}
+.btnClass {
+    display: inline-block;
+    background-color: #DF624D;
+}
+    .btnClass:hover {
+        background-color: #F2624D;
+        color: black;
+    }
+.CU-Color {
+    color: #ED563B;
+}
+.HeaderSize{
+    width:100%;
+    height:36rem;
+    margin-top:-1rem;
+    padding-top:4rem;
+}
+.ScndHeaderSize {
+    width: 100%;
+    height: 24rem;
+    margin-top: -1rem;
+    padding-top: 4rem;
+}
+.my-7{
+    margin-top:7rem;
+}
+.h1Resizing{
+    font-size:4.5rem;
+}
+.SignupBtnMargin{
+    margin-top:1rem;
+}
+.btn:focus {
+    box-shadow: 0 0 0 0.25rem rgb(223 98 77 / 25%);
+}
+.secondBG-img {
+    background-image: url("/imgs/cta-bg.jpg");
+}
+.CarousalImgSize{
+    height:700px;
+}
+.ClassScheduleBG {
+    padding: 0px 0px 140px 0px;
+    background-image: url("/imgs/schedule-bg.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.paddingleft{
+    padding-left:60px;
+}
+.paddingright{
+    padding-right:60px;
+}
+.trainer-item {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px rgb(0 0 0 / 10%);
+    padding: 40px;
+}
+ul li {
+    display: inline-block;
+    margin-right:10px;
+    color:black;
+}
+ol, ul {
+    padding-left: 0px;
+}
+div .CU-Color py-3 ul .social-icons li a i{
+    color:black;
 }
