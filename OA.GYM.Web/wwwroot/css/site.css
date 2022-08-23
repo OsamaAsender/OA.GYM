@@ -15,9 +15,10 @@ html {
 
 body {
     margin-bottom: 60px;
-    color: #344D70;
+    
 }
 a{
+    cursor:pointer;
     color:black;
 }
     a:hover {
@@ -54,7 +55,7 @@ a{
 .HeaderSize{
     width:100%;
     height:36rem;
-    margin-top:-1rem;
+    margin-top:4rem;
     padding-top:4rem;
 }
 .ScndHeaderSize {
@@ -87,6 +88,7 @@ a{
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    
 }
 .paddingleft{
     padding-left:60px;
@@ -111,3 +113,26 @@ ol, ul {
 div .CU-Color py-3 ul .social-icons li a i{
     color:black;
 }
+.CU-classlistmargin{
+    margin-top:6rem;
+
+}
+.CU-CreateBtnClass {
+    color:white;
+    background-color: #ED563B;
+}
+    .CU-CreateBtnClass:hover {
+        background-color: #F2624D;
+        color: white;
+    }
+.CU-CreateBtnClass2 {
+    color: white;
+    background-color: #555555;
+}
+    .CU-CreateBtnClass2:hover {
+        background-color: #5E5E5E;
+        color: white;
+    }
+    .CU-inlineDisplay {
+        display: inline-block;
+    }

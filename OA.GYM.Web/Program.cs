@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using OA.GYM.Web.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddAutoMapper(typeof(Program));
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

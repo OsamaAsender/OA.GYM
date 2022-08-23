@@ -2,31 +2,46 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OA.GYM.Entities;
 using OA.GYM.Web.Data;
+using OA.GYM.Web.Models.TrainingClasses;
 
 namespace OA.GYM.Web.Controllers
 {
     public class TrainingClassesController : Controller
     {
+        #region Data const
         private readonly ApplicationDbContext _context;
-
-        public TrainingClassesController(ApplicationDbContext context)
+        private readonly IMapper _mapper;
+        public TrainingClassesController(ApplicationDbContext context,IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
+        #endregion
 
-        // GET: TrainingClasses
+
+
+        #region Actions
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.TrainingClasses.Include(t => t.ClassType).Include(t => t.Coach);
-            return View(await applicationDbContext.ToListAsync());
+            var trainingclass =
+                             
+                await _context.TrainingClasses
+
+                .Include(t => t.ClassType)
+                .Include(t => t.Coach)                     
+                .ToListAsync();
+
+            var trainingclassVMs = _mapper.Map<List<TrainingClass>>(trainingclass);
+            return View(trainingclassVMs);
         }
 
-        // GET: TrainingClasses/Details/5
+    
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.TrainingClasses == null)
@@ -35,18 +50,20 @@ namespace OA.GYM.Web.Controllers
             }
 
             var trainingClass = await _context.TrainingClasses
-                .Include(t => t.ClassType)
-                .Include(t => t.Coach)
-                .FirstOrDefaultAsync(m => m.Id == id);
+
+                                 .Include(t => t.ClassType)
+                                 .Include(t => t.Coach)
+                                 .FirstOrDefaultAsync(m => m.Id == id);
+
+
             if (trainingClass == null)
             {
                 return NotFound();
             }
-
-            return View(trainingClass);
+            var trainingclassVMs = _mapper.Map<TrainingClassesViewModel>(trainingClass);
+            return View(trainingclassVMs);
         }
 
-        // GET: TrainingClasses/Create
         public IActionResult Create()
         {
             ViewData["ClassTypeId"] = new SelectList(_context.ClassTypes, "Id", "Name");
@@ -54,12 +71,10 @@ namespace OA.GYM.Web.Controllers
             return View();
         }
 
-        // POST: TrainingClasses/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,StartTime,ClassTypeId,CoachId")] TrainingClass trainingClass)
+        public async Task<IActionResult> Create(TrainingClass trainingClass)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +87,7 @@ namespace OA.GYM.Web.Controllers
             return View(trainingClass);
         }
 
-        // GET: TrainingClasses/Edit/5
+        
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.TrainingClasses == null)
@@ -90,12 +105,10 @@ namespace OA.GYM.Web.Controllers
             return View(trainingClass);
         }
 
-        // POST: TrainingClasses/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,StartTime,ClassTypeId,CoachId")] TrainingClass trainingClass)
+        public async Task<IActionResult> Edit(int id,TrainingClass trainingClass)
         {
             if (id != trainingClass.Id)
             {
@@ -127,7 +140,7 @@ namespace OA.GYM.Web.Controllers
             return View(trainingClass);
         }
 
-        // GET: TrainingClasses/Delete/5
+       
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.TrainingClasses == null)
@@ -147,7 +160,6 @@ namespace OA.GYM.Web.Controllers
             return View(trainingClass);
         }
 
-        // POST: TrainingClasses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -165,10 +177,13 @@ namespace OA.GYM.Web.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        #endregion Actions
 
+        #region Private Functions
         private bool TrainingClassExists(int id)
         {
           return (_context.TrainingClasses?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+        #endregion
     }
 }

@@ -1,35 +1,24 @@
 ﻿using OA.GYM.Utils.Enums;
-using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace OA.GYM.Entities
+namespace OA.GYM.Web.Models.Coaches
 {
-    public class Trainee
+    public class CoachViewModel
     {
-        public Trainee()
-        {
-            TrainingClasses = new List<TrainingClass>();
-        }
-
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Gender Gender { get; set; }
-        public List<TrainingClass> TrainingClasses { get; set; }
 
-
+        [Display(Name = "Coach")]
         [NotMapped]
         public string FullName
         {
-            get 
+            get
             {
                 return $"{FirstName} {LastName}";
             }
         }
-          
     }
 }

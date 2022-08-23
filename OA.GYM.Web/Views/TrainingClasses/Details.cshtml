@@ -1,20 +1,21 @@
-﻿@model OA.GYM.Entities.TrainingClass
+﻿@using OA.GYM.Web.Models.TrainingClasses
+@model TrainingClassesViewModel
 
 @{
     ViewData["Title"] = "Details";
 }
-
+<div>
 <h1>Details</h1>
 
-<div>
+<div class="container CU-classlistmargin">
     <h4>TrainingClass</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.ClassType)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.ClassType.Name)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Price)
@@ -28,12 +29,7 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.StartTime)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ClassType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ClassType.Name)
-        </dd>
+       
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Coach)
         </dt>
@@ -41,8 +37,10 @@
             @Html.DisplayFor(model => model.Coach.FirstName)
         </dd>
     </dl>
-</div>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn CU-CreateBtnClass" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a class="btn CU-CreateBtnClass2" asp-action="Index">Back to List</a>
+</div>
+</div>
 </div>

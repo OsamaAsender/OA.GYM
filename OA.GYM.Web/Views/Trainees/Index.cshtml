@@ -1,30 +1,23 @@
-﻿@model IEnumerable<OA.GYM.Entities.TrainingClass>
+﻿@using OA.GYM.Web.Models.Trainees
+@model IEnumerable<TraineesViewModel>
 
 @{
-    ViewData["Title"] = "TrainingClass";
+    ViewData["Title"] = "Trainee";
 }
 <div class="container CU-classlistmargin">
-<h1>Our <span class="CU-Color">Classes</span></h1>
+<h1>Our <span class="CU-Color">Trainees</span></h1>
 
 <p>
     <a class="btn CU-CreateBtnClass" asp-action="Create">Create New</a>
 </p>
-
 <table class="table table-striped">
     <thead>
         <tr>
-           <th>
-                @Html.DisplayNameFor(model => model.ClassType)
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartTime)
-            </th>
-            
-            <th>
-                @Html.DisplayNameFor(model => model.Coach)
+                @Html.DisplayNameFor(model => model.Gender)
             </th>
             <th></th>
         </tr>
@@ -32,18 +25,11 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-             <td>
-                @Html.DisplayFor(modelItem => item.ClassType.Name)
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartTime)
-            </td>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.Coach.FirstName)
+                @Html.DisplayFor(modelItem => item.Gender)
             </td>
             <td>
                 <a class="px-1" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pencil"></i></a> |
