@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace OA.GYM.Web.Data.Migrations
 {
-    public partial class Coach_Trainee_ClassType_TrainingClasses : Migration
+    public partial class RemovedAllMigrationsAndAddedThemBack : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,12 +24,48 @@ namespace OA.GYM.Web.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Coaches",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DOB = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Profession = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CoachingTitles = table.Column<int>(type: "int", nullable: false),
+                    Gender = table.Column<int>(type: "int", nullable: false),
+                    Nationality = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Salary = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Coaches", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Trainees",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Gender = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trainees", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TrainingClasses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ClassTypeId = table.Column<int>(type: "int", nullable: false),
                     CoachId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -95,10 +132,16 @@ namespace OA.GYM.Web.Data.Migrations
                 name: "TraineeTrainingClass");
 
             migrationBuilder.DropTable(
+                name: "Trainees");
+
+            migrationBuilder.DropTable(
                 name: "TrainingClasses");
 
             migrationBuilder.DropTable(
                 name: "ClassTypes");
+
+            migrationBuilder.DropTable(
+                name: "Coaches");
         }
     }
 }
