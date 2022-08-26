@@ -1,4 +1,6 @@
-﻿using OA.GYM.Utils.Enums;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using OA.GYM.Entities;
+using OA.GYM.Utils.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,6 +14,7 @@ namespace OA.GYM.Web.Models.Coaches
         public Gender Gender { get; set; }
 
         [Display(Name = "Coach")]
+
         [NotMapped]
         public string FullName
         {

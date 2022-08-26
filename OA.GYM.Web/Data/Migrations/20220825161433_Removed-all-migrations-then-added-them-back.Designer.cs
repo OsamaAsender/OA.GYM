@@ -12,14 +12,14 @@ using OA.GYM.Web.Data;
 namespace OA.GYM.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220824010132_RemovedAllMigrationsAndAddedThemBack")]
-    partial class RemovedAllMigrationsAndAddedThemBack
+    [Migration("20220825161433_Removed-all-migrations-then-added-them-back")]
+    partial class Removedallmigrationsthenaddedthemback
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.6")
+                .HasAnnotation("ProductVersion", "6.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -254,12 +254,6 @@ namespace OA.GYM.Web.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CoachingTitles")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DOB")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -270,17 +264,6 @@ namespace OA.GYM.Web.Data.Migrations
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nationality")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Profession")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Salary")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
