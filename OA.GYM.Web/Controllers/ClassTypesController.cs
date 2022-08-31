@@ -157,7 +157,7 @@ namespace OA.GYM.Web.Controllers
         {
             if (_context.ClassTypes == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.ClassTypes'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.ClassTypeList'  is null.");
             }
             var classType = await _context.ClassTypes.FindAsync(id);
             if (classType != null)

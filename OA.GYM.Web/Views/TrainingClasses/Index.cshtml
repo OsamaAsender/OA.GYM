@@ -1,4 +1,5 @@
-﻿@model IEnumerable<OA.GYM.Entities.TrainingClass>
+﻿@using OA.GYM.Web.Models.TrainingClasses
+@model IEnumerable<TrainingClassListViewModel>
 
 @{
     ViewData["Title"] = "TrainingClass";
@@ -14,7 +15,7 @@
     <thead>
         <tr>
            <th>
-                @Html.DisplayNameFor(model => model.ClassType)
+                    @Html.DisplayNameFor(model => model.ClassTypeName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Price)
@@ -22,9 +23,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.StartTime)
             </th>
-            
             <th>
-                @Html.DisplayNameFor(model => model.Coach)
+                @Html.DisplayNameFor(model => model.CoachFullName)
             </th>
             <th></th>
         </tr>
@@ -33,7 +33,7 @@
 @foreach (var item in Model) {
         <tr>
              <td>
-                @Html.DisplayFor(modelItem => item.ClassType.Name)
+                @Html.DisplayFor(modelItem => item.ClassTypeName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
@@ -43,7 +43,7 @@
             </td>
            
             <td>
-                @Html.DisplayFor(modelItem => item.Coach.FirstName)
+                @Html.DisplayFor(modelItem => item.CoachFullName)
             </td>
             <td>
                 <a class="px-1" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pencil"></i></a> |
@@ -54,4 +54,4 @@
 }
     </tbody>
 </table>
-</div>
+</div>+

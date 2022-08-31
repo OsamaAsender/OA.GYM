@@ -243,7 +243,7 @@ namespace OA.GYM.Web.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ClassTypes");
+                    b.ToTable("ClassTypeList");
                 });
 
             modelBuilder.Entity("OA.GYM.Entities.Coach", b =>
@@ -267,7 +267,7 @@ namespace OA.GYM.Web.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Coaches");
+                    b.ToTable("CoachesList");
                 });
 
             modelBuilder.Entity("OA.GYM.Entities.Trainee", b =>

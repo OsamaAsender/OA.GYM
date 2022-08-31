@@ -9,6 +9,8 @@ namespace OA.GYM.Web.AutoMapperProfiles
         public TrainingClassAutoMapperProfile()
         {
             CreateMap<TrainingClass, TrainingClassesViewModel>().ReverseMap();
+            CreateMap<TrainingClass, TrainingClassDetailViewModel>();
+            CreateMap<TrainingClass, TrainingClassListViewModel>();
         }
     }
 }

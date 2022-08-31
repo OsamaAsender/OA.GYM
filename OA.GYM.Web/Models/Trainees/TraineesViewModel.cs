@@ -1,5 +1,6 @@
 ﻿using OA.GYM.Entities;
 using OA.GYM.Utils.Enums;
+using OA.GYM.Web.Models.TrainingClasses;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OA.GYM.Web.Models.Trainees
@@ -8,13 +9,13 @@ namespace OA.GYM.Web.Models.Trainees
     {
         public TraineesViewModel()
         {
-           var TrainingClasses = new List<TrainingClass>();
+            TrainingClasses = new List<TrainingClassesViewModel>();
         }
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Gender Gender { get; set; }
-        public List<TrainingClass> TrainingClasses { get; set; }
+        public List<TrainingClassesViewModel> TrainingClasses { get; set; }
         
         [NotMapped]
         public string FullName

@@ -10,7 +10,7 @@ namespace OA.GYM.Web.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ClassTypes",
+                name: "ClassTypeList",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -24,7 +24,7 @@ namespace OA.GYM.Web.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Coaches",
+                name: "CoachesList",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -70,13 +70,13 @@ namespace OA.GYM.Web.Data.Migrations
                     table.ForeignKey(
                         name: "FK_TrainingClasses_ClassTypes_ClassTypeId",
                         column: x => x.ClassTypeId,
-                        principalTable: "ClassTypes",
+                        principalTable: "ClassTypeList",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_TrainingClasses_Coaches_CoachId",
                         column: x => x.CoachId,
-                        principalTable: "Coaches",
+                        principalTable: "CoachesList",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -133,10 +133,10 @@ namespace OA.GYM.Web.Data.Migrations
                 name: "TrainingClasses");
 
             migrationBuilder.DropTable(
-                name: "ClassTypes");
+                name: "ClassTypeList");
 
             migrationBuilder.DropTable(
-                name: "Coaches");
+                name: "CoachesList");
         }
     }
 }

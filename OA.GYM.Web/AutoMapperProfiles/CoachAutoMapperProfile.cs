@@ -8,8 +8,6 @@ namespace OA.GYM.Web.AutoMapperProfiles
     {
         public CoachAutoMapperProfile()
         {
-            CreateMap<Coach, CoachDetailViewModel>();
-            CreateMap<Coach, CoachListViewModel>();
             CreateMap<Coach, CoachViewModel>().ReverseMap();
         }
     }

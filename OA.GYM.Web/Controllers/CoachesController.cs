@@ -23,8 +23,8 @@ namespace OA.GYM.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var coaches = await _context.Coaches.ToListAsync();
-            var coachesVMs = _mapper.Map<List<Coach>, List<CoachViewModel>>(coaches);
-            return View(coachesVMs);
+            var coachesVM = _mapper.Map<List<Coach>, List<CoachViewModel>>(coaches);
+            return View(coachesVM);
         }
 
         // GET: Coaches/Details/5
@@ -43,8 +43,8 @@ namespace OA.GYM.Web.Controllers
                 return NotFound();
             }
 
-            var coachesVMs = _mapper.Map<Coach, CoachViewModel>(coach);
-            return View(coachesVMs);
+            var coachVM = _mapper.Map<Coach, CoachViewModel>(coach);
+            return View(coachVM);
         }
 
         // GET: Coaches/Create
@@ -56,16 +56,16 @@ namespace OA.GYM.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CoachViewModel coachesVMs)
+        public async Task<IActionResult> Create(CoachViewModel coachVM)
         {
             if (ModelState.IsValid)
             {
-                var coach = _mapper.Map<CoachViewModel, Coach>(coachesVMs);
+                var coach = _mapper.Map<CoachViewModel, Coach>(coachVM);
                 _context.Add(coach);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(coachesVMs);
+            return View(coachVM);
         }
 
 
@@ -81,8 +81,8 @@ namespace OA.GYM.Web.Controllers
             {
                 return NotFound();
             }
-            var coachesVMs = _mapper.Map<Coach, CoachViewModel>(coach);
-            return View(coachesVMs);
+            var coachVM = _mapper.Map<Coach, CoachViewModel>(coach);
+            return View(coachVM);
         }
 
 
@@ -145,7 +145,7 @@ namespace OA.GYM.Web.Controllers
         {
             if (_context.Coaches == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Coaches'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.CoachesList'  is null.");
             }
             var coach = await _context.Coaches.FindAsync(id);
             if (coach != null)

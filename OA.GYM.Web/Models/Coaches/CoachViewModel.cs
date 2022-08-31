@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using OA.GYM.Entities;
+﻿using OA.GYM.Entities;
 using OA.GYM.Utils.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

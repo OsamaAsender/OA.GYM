@@ -1,46 +1,61 @@
 ﻿@using OA.GYM.Web.Models.TrainingClasses
-@model TrainingClassesViewModel
+@model TrainingClassDetailViewModel
 
 @{
     ViewData["Title"] = "Details";
 }
 <div>
-<h1>Details</h1>
+    <h1>Details</h1>
 
-<div class="container CU-classlistmargin">
-    <h4>TrainingClass</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ClassType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ClassType.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
-       
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Coach)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Coach.FirstName)
-        </dd>
-    </dl>
-
+    <div class="container CU-classlistmargin">
+        <h4>TrainingClass</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ClassTypeName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ClassTypeName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.StartTime)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.StartTime)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CoachFullName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CoachFullName)
+            </dd>
+        </dl>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Trainee</th>
+                </tr>
+            </thead>
+            <tbody>
+               @foreach (var trainee in Model.Trainees)
+               {
+                   <tr>
+                       <td>
+                        @Html.DisplayFor(modelItem => trainee.FullName)
+                       </td>
+                   </tr>
+               }
+            </tbody>
+            </table>
 <div>
-    <a class="btn CU-CreateBtnClass" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a class="btn CU-CreateBtnClass2" asp-action="Index">Back to List</a>
+            <a class="btn CU-CreateBtnClass" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+        <a class="btn CU-CreateBtnClass2" asp-action="Index">Back to List</a>
 </div>
 </div>
 </div>
