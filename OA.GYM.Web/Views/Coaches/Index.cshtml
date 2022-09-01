@@ -33,17 +33,9 @@
                     </td>
 
                     <td>
-                        <a class="px-1" asp-action="Edit" asp-route-id="@item.Id">
-                            <i title="Edit" data-bs-toggle="tooltip" class="fa-solid fa-pencil"></i>
-                        </a>
-                        |
-                        <a class="px-1" asp-action="Details" asp-route-id="@item.Id">
-                            <i title="Details" data-bs-toggle="tooltip" class="fa-solid fa-circle-info"></i>
-                        </a>
-                        |
-                        <a class="px-1" data-bs-toggle="modal" data-bs-target="#delete_@item.Id">
-                            <i title="Delete" data-bs-toggle="tooltip" class="fa-solid fa-trash"></i>
-                        </a>
+                        <a class="px-1" asp-action="Edit" asp-route-id="@item.Id"><i title="Edit" data-bs-toggle="tooltip" class="fa-solid fa-pencil"></i></a>|
+                        <a class="px-1" asp-action="Details" asp-route-id="@item.Id"><i title="Details" data-bs-toggle="tooltip" class="fa-solid fa-circle-info"></i></a>|
+                        <a class="px-1" data-bs-toggle="modal" data-bs-target="#delete_@item.Id"><i title="Delete" data-bs-toggle="tooltip" class="fa-solid fa-trash"></i></a>
                     </td>
 
 
@@ -56,7 +48,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Are you sure you want to delete this Coach
+                                    <h5>Are you sure you want to delete <span class="CU-Color">@item.FullName</span></h5>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
