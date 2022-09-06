@@ -22,7 +22,9 @@ namespace OA.GYM.Web.Controllers
         #region Actions
         public async Task<IActionResult> Index()
         {
-            var coaches = await _context.Coaches.ToListAsync();
+            var coaches = await _context
+                                .Coaches
+                                    .ToListAsync();
             var coachesVM = _mapper.Map<List<Coach>, List<CoachViewModel>>(coaches);
             return View(coachesVM);
         }
@@ -134,8 +136,8 @@ namespace OA.GYM.Web.Controllers
             {
                 return NotFound();
             }
-            var coachesVMs = _mapper.Map<Coach, CoachViewModel>(coach);
-            return View(coachesVMs);
+            var coachVM = _mapper.Map<Coach, CoachViewModel>(coach);
+            return View(coachVM);
         }
 
         // POST: Coaches/Delete/5

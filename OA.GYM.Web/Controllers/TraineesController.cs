@@ -25,15 +25,13 @@ namespace OA.GYM.Web.Controllers
         #endregion
 
         #region
-        // GET: Trainees
         public async Task<IActionResult> Index()
         {
            var trainees =  await _context.Trainees.ToListAsync();
-            var traineeVMs = _mapper.Map<List<Trainee>, List<TraineesViewModel>>(trainees); 
-                         return View(traineeVMs);
+            var traineesVM = _mapper.Map<List<Trainee>, List<TraineesViewModel>>(trainees); 
+                         return View(traineesVM);
         }
 
-        // GET: Trainees/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Trainees == null)
@@ -47,34 +45,29 @@ namespace OA.GYM.Web.Controllers
             {
                 return NotFound();
             }
-            var traineesVMs = _mapper.Map<Trainee, TraineesViewModel>(trainee);
-            return View(traineesVMs);
+            var traineeVM = _mapper.Map<Trainee, TraineesViewModel>(trainee);
+            return View(traineeVM);
         }
 
-        // GET: Trainees/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Trainees/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TraineesViewModel traineeVMs)
+        public async Task<IActionResult> Create(TraineesViewModel traineeVM)
         {
             if (ModelState.IsValid)
             {
-                var trainee = _mapper.Map<TraineesViewModel, Trainee>(traineeVMs);
+                var trainee = _mapper.Map<TraineesViewModel, Trainee>(traineeVM);
                 _context.Add(trainee);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(traineeVMs);
+            return View(traineeVM);
         }
 
-        // GET: Trainees/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Trainees == null)
@@ -91,9 +84,6 @@ namespace OA.GYM.Web.Controllers
             return View(traineeVMs);
         }
 
-        // POST: Trainees/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, TraineesViewModel traineeVMs)
@@ -127,7 +117,6 @@ namespace OA.GYM.Web.Controllers
             return View(traineeVMs);
         }
 
-        // GET: Trainees/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Trainees == null)
@@ -145,7 +134,6 @@ namespace OA.GYM.Web.Controllers
             return View(traineeVMs);
         }
 
-        // POST: Trainees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

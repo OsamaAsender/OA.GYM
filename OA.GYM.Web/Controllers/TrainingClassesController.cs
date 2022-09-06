@@ -17,6 +17,7 @@ namespace OA.GYM.Web.Controllers
         #region Data const
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
+
         public TrainingClassesController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
@@ -54,13 +55,14 @@ namespace OA.GYM.Web.Controllers
                                  .Include(t => t.ClassType)
                                  .Include(t => t.Coach)
                                  .Include(t => t.Trainees)
-                                 .FirstOrDefaultAsync(m => m.Id == id);
+                                 .FirstOrDefaultAsync(tc => tc.Id == id);
 
 
             if (trainingClass == null)
             {
                 return NotFound();
             }
+
             var trainingClassVM = _mapper.Map<TrainingClassDetailViewModel>(trainingClass);
             return View(trainingClassVM);
         }
@@ -69,11 +71,9 @@ namespace OA.GYM.Web.Controllers
         {
             var trainingclassVM = new TrainingClassesViewModel();
 
-
             trainingclassVM.ClassTypeList = new SelectList(_context.ClassTypes, "Id", "Name");
             trainingclassVM.CoachesList = new SelectList(_context.Coaches, "Id", "FirstName");
             trainingclassVM.TraineesList = new MultiSelectList(_context.Trainees, "Id", "FullName");
-
 
             return View(trainingclassVM);
 
@@ -129,22 +129,14 @@ namespace OA.GYM.Web.Controllers
                 return NotFound();
             }
 
-
-
             var trainingClassVM = _mapper.Map<TrainingClassesViewModel>(trainingClass);
 
 
             trainingClassVM.ClassTypeList = new SelectList(_context.ClassTypes, "Id", "Name", trainingClass.ClassTypeId);
-
-
             trainingClassVM.CoachesList = new SelectList(_context.Coaches, "Id", "FirstName", trainingClass.CoachId);
-
 
             trainingClassVM.TraineeIds = trainingClass.Trainees.Select(t => t.Id).ToList();   //this line brings the selected TraineeIds in Create  from the database as a list and says the TraineeIds in the viewmodel == TraineeIds in the database
             trainingClassVM.TraineesList = new MultiSelectList(_context.Trainees, "Id", "FullName", trainingClassVM.TraineeIds);
-
-
-
 
             return View(trainingClassVM);
         }
@@ -183,7 +175,7 @@ namespace OA.GYM.Web.Controllers
             }
             trainingClassVM.ClassTypeList = new SelectList(_context.ClassTypes, "Id", "Name", trainingClassVM.ClassTypeId);
             trainingClassVM.CoachesList = new SelectList(_context.Coaches, "Id", "FirstName", trainingClassVM.CoachId);
-            trainingClassVM.TraineesList = new MultiSelectList(_context.Trainees, "Id", "FullName", trainingClassVM.TraineesList);
+            trainingClassVM.TraineesList = new MultiSelectList(_context.Trainees, "Id", "FullName", trainingClassVM.TraineeIds);
             return View(trainingClassVM);
         }
 
@@ -234,22 +226,22 @@ namespace OA.GYM.Web.Controllers
 
         private async Task AddTraineesToTrainingClass(TrainingClassesViewModel trainingClassVM, int trainingClassId)
         {
-            var trainingClass = await _context
+            var trainingClass = await _context                               
                                     .TrainingClasses
                                     .Include(tc => tc.Trainees)
                                     .Where(tc => trainingClassId == tc.Id)
                                     .SingleAsync();
 
-            trainingClass.Trainees.Clear();
+            trainingClass.Trainees.Clear();                              
 
             var trainees = await _context
                 .Trainees
-                .Where(t => trainingClassVM.TraineeIds.Contains(t.Id))
+                .Where(t => trainingClassVM.TraineeIds.Contains(t.Id))       
                 .ToListAsync();
 
             trainingClass.Trainees.AddRange(trainees);
 
-            _context.Update(trainingClass);
+            _context.Update(trainingClass);                               
             await _context.SaveChangesAsync();
         }
 

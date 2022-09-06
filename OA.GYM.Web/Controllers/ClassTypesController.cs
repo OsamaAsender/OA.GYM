@@ -56,30 +56,25 @@ namespace OA.GYM.Web.Controllers
             return View(classTypesVMs);
         }
 
-        // GET: ClassTypes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: ClassTypes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ClassTypesViewModel classTypesVMs)
+        public async Task<IActionResult> Create(ClassTypesViewModel classTypeVM)
         {
             if (ModelState.IsValid)
             {
-                var classtype = _mapper.Map<ClassTypesViewModel, ClassType>(classTypesVMs);
+                var classtype = _mapper.Map<ClassTypesViewModel, ClassType>(classTypeVM);
                 _context.Add(classtype);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(classTypesVMs);
+            return View(classTypeVM);
         }
 
-        // GET: ClassTypes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.ClassTypes == null)
@@ -92,18 +87,15 @@ namespace OA.GYM.Web.Controllers
             {
                 return NotFound();
             }
-            var classTypesVMs = _mapper.Map<ClassType, ClassTypesViewModel>(classtype);
-            return View(classTypesVMs);
+            var classTypeVM = _mapper.Map<ClassType, ClassTypesViewModel>(classtype);
+            return View(classTypeVM);
         }
 
-        // POST: ClassTypes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, ClassTypesViewModel classTypesVMs)
+        public async Task<IActionResult> Edit(int id, ClassTypesViewModel classTypeVM)
         {
-            if (id != classTypesVMs.Id)
+            if (id != classTypeVM.Id)
             {
                 return NotFound();
             }
@@ -112,13 +104,13 @@ namespace OA.GYM.Web.Controllers
             {
                 try
                 {
-                    var classType = _mapper.Map<ClassTypesViewModel, ClassType>(classTypesVMs);
+                    var classType = _mapper.Map<ClassTypesViewModel, ClassType>(classTypeVM);
                     _context.Update(classType);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClassTypeExists(classTypesVMs.Id))
+                    if (!ClassTypeExists(classTypeVM.Id))
                     {
                         return NotFound();
                     }
@@ -129,10 +121,9 @@ namespace OA.GYM.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(classTypesVMs);
+            return View(classTypeVM);
         }
 
-        // GET: ClassTypes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.ClassTypes == null)
@@ -146,11 +137,10 @@ namespace OA.GYM.Web.Controllers
             {
                 return NotFound();
             }
-            var classTypesVMs = _mapper.Map<ClassType, ClassTypesViewModel>(classType);
-            return View(classTypesVMs);
+            var classTypeVM = _mapper.Map<ClassType, ClassTypesViewModel>(classType);
+            return View(classTypeVM);
         }
 
-        // POST: ClassTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
